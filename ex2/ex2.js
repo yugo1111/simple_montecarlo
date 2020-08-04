@@ -1,7 +1,8 @@
 class foo {
     constructor( x ) {
       this.x = x;
-      var btn = document.getElementById( 'btn1' );
+      var btn = document.querySelector( '#btn1' );
+      // functionを使ってイベントを記述した例
       btn.addEventListener( 'click', function( event ) { this.incX(); } );
     }
     getX() {
@@ -16,6 +17,6 @@ class foo {
   }
 
 window.addEventListener('load', function() {
-    var f = new foo();
+    var f = new foo(5);
 })
 

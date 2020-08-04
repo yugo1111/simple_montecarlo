@@ -5,7 +5,8 @@ window.addEventListener("load", () => {
     document.querySelector("#graph1"),
     document.querySelector("#graph1b")
   );
-    mui.setNumber( document.querySelectorAll( '#panel2 > button') );
+  mui.setNumber(document.querySelectorAll("#panel2 > button"));
+  mui.setResult(document.querySelector("#result"));
 });
 
 class Montecarlo_ui {
@@ -17,16 +18,26 @@ class Montecarlo_ui {
       this.montecarlo.clearCanvas();
     });
     this.start.addEventListener("click", () => {
-      this.montecarlo.next();
+      let result = this.montecarlo.next();
+      this.result.textContent =
+        "計算結果：" +
+        result[0] / result[1] +
+        "(試行回数：" +
+        result[1] +
+        "回)";
     });
   }
-  setNumber( btnArray ) {
-      for( let btn of btnArray ) {
-          btn.addEventListener('click', () => {
-              if( btn.getAttribute('number') )
-                this.montecarlo.setTimes( btn.getAttribute('number') );
-          });
-      }
+  setNumber(btnArray) {
+    for (let btn of btnArray) {
+      btn.addEventListener("click", () => {
+        if (btn.getAttribute("number"))
+          this.montecarlo.setTimes(btn.getAttribute("number"));
+      });
+    }
+  }
+  setResult(result_element) {
+    this.result = result_element;
+    this.result.textContent = "計算結果：";
   }
 }
 class Montecarlo {
@@ -34,6 +45,8 @@ class Montecarlo {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.times = 10000;
+    this.all_number = 0;
+    this.inside_number = 0;
   }
   next() {
     for (let i = 0; i < this.times; i++) {
@@ -43,9 +56,12 @@ class Montecarlo {
       let length = Math.sqrt(x * x + y * y);
       if (length <= 1.0) {
         this.ctx.strokeStyle = "rgb(40, 40, 200)";
+        this.inside_number++;
       } else {
         this.ctx.strokeStyle = "rgb(220, 40, 40)";
       }
+      this.all_number++;
+
       this.ctx.beginPath();
       let px = (x + 1.0) * 200.0;
       let py = (y + 1.0) * 200.0;
@@ -53,12 +69,14 @@ class Montecarlo {
       this.ctx.lineTo(px + 1, py + 1);
       this.ctx.stroke();
     }
+    return [this.inside_number, this.all_number];
   }
   clearCanvas() {
     this.ctx.clearRect(0, 0, 400, 400);
+    this.inside_number = 0;
+    this.all_number = 0;
   }
-  setTimes( value ) {
-      console.log(value);
-      this.times = value;
+  setTimes(value) {
+    this.times = value;
   }
 }

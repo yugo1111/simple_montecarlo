@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>モンテカルロ法による円の面積</title>
     <link href="montecarlo.css" rel="stylesheet" type="text/css" />
     <script src="montecarlo.js"></script>
@@ -13,17 +13,18 @@
         <button id="clear" class="big">クリア</button>
       </div>
       <div id="panel2" class="panels">
-          <button id="range01" number=1000>1,000回</button>
-          <button id="range02" number=10000>10,000回</button>
-          <button id="range03" number=100000>100,000回</button>
-          <button id="range04" number=1000000>1,000,000回</button>
+        <button id="range01" number="1000">1,000回</button>
+        <button id="range02" number="10000">10,000回</button>
+        <button id="range03" number="100000">100,000回</button>
+        <button id="range04" number="1000000">1,000,000回</button>
       </div>
+      <p id="result"></p>
     </div>
     <div id="main">
-        <div id="area1">
-            <canvas id="graph1" width="400" height="400" class="graph"></canvas>
-            <canvas id="graph1b" width="400" height="400" class="graph"></canvas>
-        </div>
+      <div id="area1">
+        <canvas id="graph1" width="400" height="400" class="graph"></canvas>
+        <canvas id="graph1b" width="400" height="400" class="graph"></canvas>
+      </div>
     </div>
   </body>
 </html>

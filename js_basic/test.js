@@ -1,4 +1,4 @@
-console.log("Hello, world");
+// 配列に色々なオブジェクトを追加する例
 
 var a = [];
 a.push( 5 );

@@ -20,7 +20,7 @@ class Drawing {
 }
 
 window.addEventListener("load", () => {
-  var element = document.getElementById("canvas1");
+  var element = document.querySelector("#canvas1");
   var draw = new Drawing(element);
   draw.set_event();
 });
